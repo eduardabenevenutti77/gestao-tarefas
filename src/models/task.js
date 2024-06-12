@@ -14,3 +14,42 @@
     * Status (pendente, em andamento, concluída)
     * ID do Projeto (relacionamento com a entidade Projeto)
 */
+
+// const { type } = require('os');
+// const { type } = require('os');
+const database = require('../config/database');
+const projectID = require('../models/project');
+
+class Task {
+    constructor() {
+        this.model = database.define('tasks', {
+            id: {
+                type: database.Sequelize.INTEGER,
+                primaryKey: true,
+                autoIncrement: true
+            },
+            titulo: {
+                type: database.Sequelize.STRING
+            },
+            descricao: {
+                type: database.Sequelize.STRING
+            },
+            data_criacao: {
+                type: database.Sequelize.DATATIME
+            },
+            data_conclusao: {
+                type: database.Sequelize.DATATIME
+            },
+            status: {
+                type: database.Sequelize.STRING
+            },
+            projectID: {
+                type: database.Sequelize.INTEGER,
+                foreignKey: true
+            }
+        })
+    }
+}
+
+projectID.belongsTo(projectID, { foreingKey: 'projectID' })
+module.exports = (new Task).model;
