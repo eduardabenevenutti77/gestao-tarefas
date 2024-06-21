@@ -46,7 +46,7 @@ class Task {
             projectID: {
                 type: database.Sequelize.INTEGER,
                 references: {
-                    model: 'project',
+                    model: 'projects',
                     key: 'id'
                 }
             }

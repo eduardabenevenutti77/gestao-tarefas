@@ -14,7 +14,7 @@
 // const { type } = require('os');
 // const { type } = require('os');
 const database = require('../config/database');
-const userID = require('../models/user');
+// const userID = require('../models/user');
 
 class Project {
     constructor() {
@@ -36,7 +36,7 @@ class Project {
             userID: {
                 type: database.Sequelize.INTEGER,
                 references: {
-                    model: 'project',
+                    model: 'users',
                     key: 'id'
                 }
             }
