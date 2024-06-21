@@ -45,11 +45,14 @@ class Task {
             },
             projectID: {
                 type: database.Sequelize.INTEGER,
-                foreignKey: true
+                references: {
+                    model: 'project',
+                    key: 'id'
+                }
             }
         })
     }
 }
 
-projectID.belongsTo(projectID, { foreingKey: 'projectID' })
+// projectID.belongsTo(projectID, { foreingKey: 'projectID' })
 module.exports = (new Task).model;

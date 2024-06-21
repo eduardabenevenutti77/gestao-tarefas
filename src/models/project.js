@@ -34,12 +34,15 @@ class Project {
                 type: database.Sequelize.DATATIME
             },
             userID: {
-                type: database.Sequelize.STRING,
-                foreingKey: true
+                type: database.Sequelize.INTEGER,
+                references: {
+                    model: 'project',
+                    key: 'id'
+                }
             }
         })
     }
 }
 
-userID.belongsTo(userID, { foreingKey: 'userID' })
+// userID.belongsTo(userID, { foreingKey: 'userID' })
 module.exports = (new Project).model;
