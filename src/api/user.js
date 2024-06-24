@@ -35,6 +35,32 @@ class User {
             return res.status(400).send({ error: error.message })
         }
     }
+    async showUser(req, res) {
+        try {
+            const user = await UserController.showUser();
+            return res.status(200).send(user);
+        } catch (error) {
+            return res.status(400).send({ error: error.message })
+        }
+    }
+    async login(req, res) {
+        try {
+            const {email, password} = req.body;
+            const token = await UserController.login(email, password);
+            return res.status(200).send(token);
+        } catch (error) {
+            return res.status(400).send({ error: error.message });
+        }
+    }
+    async validateToken(req, res, next) {
+        const token = req.headers.authorization;
+        try {
+            await UserController.validateToken(token);
+            next();
+        } catch (error) {
+            return res.status(400).send({ error: error.message })
+        }
+    }
 }
 
 module.exports = new User();

@@ -20,13 +20,13 @@ class User {
                 primaryKey: true,
                 autoIncrement: true
             },
-            nome: {
+            name: {
                 type: database.Sequelize.STRING
             },
             email: {
                 type: database.Sequelize.STRING
             },
-            senha: {
+            password: {
                 type: database.Sequelize.STRING
             },
             data_criacao: {
