@@ -24,13 +24,13 @@ class Project {
                 primaryKey: true,
                 autoIncrement: true,
             },
-            nome: {
+            name: {
                 type: database.Sequelize.STRING
             },
-            descricao: {
+            description: {
                 type: database.Sequelize.STRING
             },
-            data_criacao: {
+            date_inclusion: {
                 type: database.Sequelize.DATATIME
             },
             userID: {

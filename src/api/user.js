@@ -7,9 +7,7 @@ const UserController = require('../controllers/user');
 
 class User {
     async newUser(req, res) {
-        const name = req.body.name;
-        const email = req.body.email;
-        const password = req.body.password;
+        const { name, email, password } = req.body;
         try {
             const user = await UserController.newUser(name, email, password);
             return res.status(201).send(user);
@@ -41,15 +39,6 @@ class User {
             return res.status(200).send(user);
         } catch (error) {
             return res.status(400).send({ error: error.message })
-        }
-    }
-    async login(req, res) {
-        try {
-            const {email, password} = req.body;
-            const token = await UserController.login(email, password);
-            return res.status(200).send(token);
-        } catch (error) {
-            return res.status(400).send({ error: error.message });
         }
     }
     async login(req, res) {

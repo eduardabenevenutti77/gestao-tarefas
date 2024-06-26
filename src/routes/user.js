@@ -1,13 +1,10 @@
-const express = require('express');
-const UserApi = require('../api/user');
-const server = require('../server');
+const express = require('express')
+const UserApi = require('../api/user')
+const router = express.Router()
 
-const app = express()
-app.use(express.json())
+router.post('/', UserApi.newUser)
+router.get('/', UserApi.showUser)
+router.put('/:id', UserApi.updateUser)
+router.delete('/:id', UserApi.deleteUser)
 
-app.post('/login', UserApi.login);
-app.post('/user', UserApi.newUser);
-app.use(UserApi.validateToken);
-app.get('/user', UserApi.showUser);
-app.put('/user/:id', UserApi.updateUser);
-app.delete('/user/:id', UserApi.deleteUser);
+module.exports = router

@@ -28,16 +28,16 @@ class Task {
                 primaryKey: true,
                 autoIncrement: true
             },
-            titulo: {
+            title: {
                 type: database.Sequelize.STRING
             },
-            descricao: {
+            description: {
                 type: database.Sequelize.STRING
             },
-            data_criacao: {
+            date_inclusion: {
                 type: database.Sequelize.DATATIME
             },
-            data_conclusao: {
+            date_complation: {
                 type: database.Sequelize.DATATIME
             },
             status: {
