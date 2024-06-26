@@ -9,10 +9,10 @@
 const ProjectController = require('../controllers/project')
 
 class Project {
-    async newProject(req, res) {
+    async new_project(req, res) {
         const {name, description, date_inclusion, userID} = req.body;
         try {
-            const project = await ProjectController.newProject(name, description, date_inclusion, userID);
+            const project = await ProjectController.new_project(name, description, date_inclusion, userID);
             return res.status(201).send(project);
         } catch (error) {
             return res.status(400).send({ error: error.menssage })

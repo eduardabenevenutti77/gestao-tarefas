@@ -6,36 +6,36 @@
 const UserController = require('../controllers/user');
 
 class User {
-    async newUser(req, res) {
+    async new_user(req, res) {
         const { name, email, password } = req.body;
         try {
-            const user = await UserController.newUser(name, email, password);
+            const user = await UserController.new_user(name, email, password);
             return res.status(201).send(user);
         } catch (error) {
             return res.status(400).send({ error: error.message })
         }
     }
-    async updateUser(req, res) {
+    async update_user(req, res) {
         const {id, name, email, password} = req.body;
         try {
-            const user = await UserController.updateUser(Number(id), name, email, password);
+            const user = await UserController.update_user(Number(id), name, email, password);
             return res.status(200).send(user);
         } catch (error) {
             return res.status(400).send({ error: error.message })
         }
     }
-    async deleteUser(req, res) {
+    async delete_user(req, res) {
         const {id} = req.body;
         try {
-            await UserController.deleteUser(Number(id));
+            await UserController.delete_user(Number(id));
             return res.status(204).send();
         } catch (error) {
             return res.status(400).send({ error: error.message })
         }
     }
-    async showUser(req, res) {
+    async show_user(req, res) {
         try {
-            const user = await UserController.showUser();
+            const user = await UserController.show_user();
             return res.status(200).send(user);
         } catch (error) {
             return res.status(400).send({ error: error.message })
@@ -50,10 +50,10 @@ class User {
             return res.status(400).send({ error: error.message });
         }
     }
-    async validateToken(req, res, next) {
+    async validate_token(req, res, next) {
         const token = req.headers.authorization;
         try {
-            await UserController.validateToken(token);
+            await UserController.validate_token(token);
             next();
         } catch (error) {
             return res.status(400).send({ error: error.message })

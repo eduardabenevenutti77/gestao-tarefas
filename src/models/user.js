@@ -9,7 +9,6 @@
     * Senha (hash)
     * Data de criação
 */
-const { type } = require('os');
 const database = require('../config/database');
 
 class User {

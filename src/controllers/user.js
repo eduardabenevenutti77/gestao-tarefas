@@ -11,7 +11,7 @@ const JWT_SECRET_KEY = 'mikey';
 const cripto = 7;
 
 class UserController {
-    async newUser(req, res) {
+    async new_user(req, res) {
         const {name, email, password} = req.body;
         if (name === undefined || email === undefined || password === undefined) {
             throw new Error('Name, e-mail e password são obrigatórios!');
@@ -24,7 +24,7 @@ class UserController {
             return res.status(500).json({ error: error.message });
         }
     }
-    async updateUser(req, res) {
+    async update_user(req, res) {
         const { id } = req.params;
         const { name, email, password } = req.body;
         if (!id || !name || !email || !password) {
@@ -45,7 +45,7 @@ class UserController {
             return res.status(500).json({ error: error.message });
         }
     }
-    async deleteUser(req, res) {
+    async delete_user(req, res) {
         const { id } = req.params;
         if (!id) {
             return res.status(400).json({ error: 'O id é obrigatório! '});
@@ -61,7 +61,7 @@ class UserController {
            return res.status(500).json({ error: error.message }); 
         }
     }
-    async showUser(req, res) {
+    async show_user(req, res) {
         try {
             const user = await User.findAll();
             return res.status(200).json(user);
@@ -89,7 +89,7 @@ class UserController {
             return res.status(500).json({ error: error.message });
         }
     }
-    async validateToken(req, res) {
+    async validate_token(req, res) {
         const { token } = req.body;
         try {
             const validate = jwt.verify(token, JWT_SECRET_KEY);
