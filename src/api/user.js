@@ -3,6 +3,7 @@
     * O email deve ser único para cada usuário.
     * A senha deve ser armazenada de forma segura (hash).
 */
+
 const UserController = require('../controllers/user');
 
 class User {
