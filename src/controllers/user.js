@@ -19,7 +19,7 @@ class UserController {
         try {
             const password_hash = await bcrypt.hash(password, cripto);
             const user = await User.create({ name, email, password: password_hash });
-            return res.status(201)(user);
+            return res.status(201).json(user);
         } catch (error) {
             return res.status(500).json({ error: error.message });
         }
