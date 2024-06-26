@@ -52,6 +52,15 @@ class User {
             return res.status(400).send({ error: error.message });
         }
     }
+    async login(req, res) {
+        try {
+            const {email, password} = req.body;
+            const token = await UserController.login(email, password);
+            return res.status(200).send(token);
+        } catch (error) {
+            return res.status(400).send({ error: error.message });
+        }
+    }
     async validateToken(req, res, next) {
         const token = req.headers.authorization;
         try {
