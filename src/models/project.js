@@ -11,10 +11,9 @@
     * Data de criação
     * ID do Usuário (relacionamento com a entidade Usuário)
 */
-// const { type } = require('os');
-// const { type } = require('os');
+
 const database = require('../config/database');
-// const userID = require('../models/user');
+const userID = require('../models/user');
 
 class Project {
     constructor() {

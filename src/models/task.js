@@ -15,8 +15,6 @@
     * ID do Projeto (relacionamento com a entidade Projeto)
 */
 
-// const { type } = require('os');
-// const { type } = require('os');
 const database = require('../config/database');
 const projectID = require('../models/project');
 
