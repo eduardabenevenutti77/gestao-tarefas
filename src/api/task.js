@@ -6,3 +6,73 @@
     * Cada tarefa deve registrar a data de criação automaticamente e permitir a adição de uma data de conclusão.
     * O título das tarefas deve ter um limite de caracteres (por exemplo, máximo 100 caracteres).
 */
+
+const TaskController = require('../controllers/project')
+let status = 'Pedente'
+
+class Task {
+    async new_task(req, res) {
+        const {title, description, date_inclusion, date_complation, projectID} = req.body;
+        try {
+            const task = await TaskController.new_task(title, description, date_inclusion, date_complation, projectID);
+            return res.status(201).send(task);
+        } catch (error) {
+            return res.status(400).send({ error: error.message });
+        }
+    }
+    async update_task(req, res) {
+        const [id, title, description, date_inclusion, date_complation, status] = req.body;
+        try {
+            const task = await TaskController.update_task(Number(id), title, description, date_inclusion, date_complation, status);
+            return res.status(200).send(task);
+        } catch (error) {
+            return res.status(400).send({ error: error.message });
+        }
+    }
+    async delete_task(req, res) {
+        const { id } = req.body;
+        try {
+            await TaskController.delete_task(Number(id));
+            return res.status(200).send();
+        } catch (error) {
+            return res.status(400).send({ error: error.message });
+        }
+    }
+    async show_all_task(req, res) {
+        try {
+            const task = await TaskController.show_all_task();
+            return res.status(200).send(task);
+        } catch (error) {
+            return res.status(400).send({ error: error.message });
+        }
+    }
+    async show_by_project(req, res) {
+        const { projectID } = req.body;
+        try {
+            const task = await TaskController.show_by_project(Number(projectID));
+            return res.status(200).send(task)
+        } catch (error) {
+            return res.status(400).send({ error: error.message });
+        }
+    }
+    async show_by_status(req, res) {
+        const { status } = req.body;
+        try {
+            const task = await TaskController.show_by_status(status);
+            return res.status(200).send(task);
+        } catch (error) {
+            return res.status(400).send({ error: error.message });
+        }
+    }
+    async validate_token(req, res, next) {
+        const token = req.headers.authorization;
+        try {
+            await TaskController.validate_token(token);
+            next();
+        } catch (error) {
+            return res.status(400).send({ error: error.message })
+        }
+    }
+}
+
+module.exports = new Task();

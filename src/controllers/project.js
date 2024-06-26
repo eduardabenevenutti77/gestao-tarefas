@@ -49,7 +49,7 @@ class ProjectController {
         try {
             const project = await Project.findByPk(id);
             if (!project) {
-                return res.status(404).json({ error: 'Usuário não foi encontrado!'});
+                return res.status(404).json({ error: 'Projeto não foi encontrado!'});
             }
             await project.destroy();
             return res.status(204).send();
@@ -78,6 +78,15 @@ class ProjectController {
             return res.status(200).send(project);
         } catch (error) {
             return res.status(500).json({ error: error.message }); 
+        }
+    }
+    async validate_token(req, res) {
+        const { token } = req.body;
+        try {
+            const validate = jwt.verify(token, JWT_SECRET_KEY);
+            return res.status(200).json(validate);
+        } catch (error) {
+            return res.status(401).json({ error: 'Token inválido! '});
         }
     }
 }
