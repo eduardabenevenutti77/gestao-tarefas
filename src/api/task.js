@@ -12,7 +12,7 @@ let status = 'Pedente'
 
 class Task {
     async new_task(req, res) {
-        const {title, description, date_inclusion, date_complation, projectID} = req.body;
+        const { title, description, date_inclusion, date_complation, projectID } = req.body;
         try {
             const task = await TaskController.new_task(title, description, date_inclusion, date_complation, projectID);
             return res.status(201).send(task);
@@ -21,7 +21,8 @@ class Task {
         }
     }
     async update_task(req, res) {
-        const [id, title, description, date_inclusion, date_complation, status] = req.body;
+        const { id } = req.params;
+        const { title, description, date_inclusion, date_complation, status } = req.body;
         try {
             const task = await TaskController.update_task(Number(id), title, description, date_inclusion, date_complation, status);
             return res.status(200).send(task);
@@ -30,7 +31,7 @@ class Task {
         }
     }
     async delete_task(req, res) {
-        const { id } = req.body;
+        const { id } = req.params;
         try {
             await TaskController.delete_task(Number(id));
             return res.status(200).send();
@@ -47,7 +48,7 @@ class Task {
         }
     }
     async show_by_project(req, res) {
-        const { projectID } = req.body;
+        const { projectID } = req.params;
         try {
             const task = await TaskController.show_by_project(Number(projectID));
             return res.status(200).send(task)

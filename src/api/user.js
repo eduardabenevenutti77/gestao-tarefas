@@ -16,7 +16,8 @@ class User {
         }
     }
     async update_user(req, res) {
-        const {id, name, email, password} = req.body;
+        const { id } = req.params;
+        const { name, email, password } = req.body;
         try {
             const user = await UserController.update_user(Number(id), name, email, password);
             return res.status(200).send(user);
@@ -25,7 +26,7 @@ class User {
         }
     }
     async delete_user(req, res) {
-        const {id} = req.body;
+        const { id } = req.params;
         try {
             await UserController.delete_user(Number(id));
             return res.status(204).send();

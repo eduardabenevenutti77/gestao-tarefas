@@ -12,7 +12,7 @@ const cripto = 7;
 
 class UserController {
     async new_user(req, res) {
-        const {name, email, password} = req.body;
+        const { name, email, password } = req.body;
         if (name === undefined || email === undefined || password === undefined) {
             throw new Error('Name, e-mail e password são obrigatórios!');
         }
@@ -70,7 +70,7 @@ class UserController {
         }
     }
     async login(req, res) {
-        const {email, password} = req.body;
+        const { email, password } = req.body;
         if (!email || !password) {
             return res.status(400).json({ error: 'E-mail e password são obrigatórios! '});
         }

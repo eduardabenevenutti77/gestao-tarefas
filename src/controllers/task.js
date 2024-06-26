@@ -81,7 +81,7 @@ class TaskController {
         }
     }
     async show_by_status(req, res) {
-        const { status } = req.params;
+        const { status } = req.body; // ou params - preciso verificar
         if (!status) {
             return res.status(400).json({ error: 'O status é obrigatório!'});
         }
