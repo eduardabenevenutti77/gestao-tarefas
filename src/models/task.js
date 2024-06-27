@@ -14,7 +14,7 @@
     * Status (pendente, em andamento, concluída)
     * ID do Projeto (relacionamento com a entidade Projeto)
 */
-
+const Sequelize = require('sequelize');
 const database = require('../config/database');
 const projectID = require('../models/project');
 

@@ -1,7 +1,9 @@
-const Sequelize = require('sequelize');
-const database = new Sequelize(
-    'gestao_tarefas',
-    'root',
-    '',
-    { host: 'localhost', dialect: 'mysql'}
-)
+module.exports = {
+    development: {
+      username: 'root',
+      password: '123456',
+      database: 'gestao_tarefas',
+      host: 'localhost',
+      dialect: 'mysql',
+    },
+};

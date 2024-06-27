@@ -12,6 +12,7 @@
     * ID do Usuário (relacionamento com a entidade Usuário)
 */
 
+const Sequelize = require('sequelize');
 const database = require('../config/database');
 const userID = require('../models/user');
 

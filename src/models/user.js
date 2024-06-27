@@ -9,6 +9,7 @@
     * Senha (hash)
     * Data de criação
 */
+const Sequelize = require('sequelize');
 const database = require('../config/database');
 
 class User {
