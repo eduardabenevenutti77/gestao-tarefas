@@ -1,5 +1,5 @@
 const app = require('./app');
-const database = require('./config/database');
+const database = require('./database');
 const UserRouter = require('./routes/user');
 const ProjectRouter = require('./routes/project');
 const TaskRouter = require('./routes/task');

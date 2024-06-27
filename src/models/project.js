@@ -13,28 +13,28 @@
 */
 
 const Sequelize = require('sequelize');
-const database = require('../config/database');
+const database = require('../database')
 const userID = require('../models/user');
 
 class Project {
     constructor() {
-        this.model = database.define('projects', {
+        this.model = database.db.define('projects', {
             id: {
-                type: database.Sequelize.INTEGER,
+                type: database.db.Sequelize.INTEGER,
                 primaryKey: true,
                 autoIncrement: true,
             },
             name: {
-                type: database.Sequelize.STRING
+                type: database.db.Sequelize.STRING
             },
             description: {
-                type: database.Sequelize.STRING
+                type: database.db.Sequelize.STRING
             },
             date_inclusion: {
-                type: database.Sequelize.DATATIME
+                type: database.db.Sequelize.DATE
             },
             userID: {
-                type: database.Sequelize.INTEGER,
+                type: database.db.Sequelize.INTEGER,
                 references: {
                     model: 'users',
                     key: 'id'

@@ -8,7 +8,12 @@
     "sequelize": "^6.37.3"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "",
+    "test": "jest --coverage",
     "start": "node ./src/server.js"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
   }
 }

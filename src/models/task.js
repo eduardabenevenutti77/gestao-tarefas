@@ -15,34 +15,34 @@
     * ID do Projeto (relacionamento com a entidade Projeto)
 */
 const Sequelize = require('sequelize');
-const database = require('../config/database');
+const database = require('../database')
 const projectID = require('../models/project');
 
 class Task {
     constructor() {
-        this.model = database.define('tasks', {
+        this.model = database.db.define('tasks', {
             id: {
-                type: database.Sequelize.INTEGER,
+                type: database.db.Sequelize.INTEGER,
                 primaryKey: true,
                 autoIncrement: true
             },
             title: {
-                type: database.Sequelize.STRING
+                type: database.db.Sequelize.STRING
             },
             description: {
-                type: database.Sequelize.STRING
+                type: database.db.Sequelize.STRING
             },
             date_inclusion: {
-                type: database.Sequelize.DATATIME
+                type: database.db.Sequelize.DATATIME
             },
             date_complation: {
-                type: database.Sequelize.DATATIME
+                type: database.db.Sequelize.DATATIME
             },
             status: {
-                type: database.Sequelize.STRING
+                type: database.db.Sequelize.STRING
             },
             projectID: {
-                type: database.Sequelize.INTEGER,
+                type: database.db.Sequelize.INTEGER,
                 references: {
                     model: 'projects',
                     key: 'id'

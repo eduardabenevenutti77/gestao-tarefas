@@ -5,6 +5,6 @@ const router = express.Router()
 router.post('/', UserApi.new_user)
 router.get('/', UserApi.show_user)
 router.put('/:id', UserApi.update_user)
-router.delete('/:id', UserApi.delete_ser)
+router.delete('/:id', UserApi.delete_user)
 
 module.exports = router

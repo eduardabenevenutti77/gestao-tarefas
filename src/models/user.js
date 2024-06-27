@@ -10,27 +10,27 @@
     * Data de criação
 */
 const Sequelize = require('sequelize');
-const database = require('../config/database');
+const database = require('../database')
 
 class User {
     constructor() {
-        this.model = database.define('users', {
+        this.model = database.db.define('users', {
             id: {
-                type: database.Sequelize.INTEGER,
+                type: database.db.Sequelize.INTEGER,
                 primaryKey: true,
                 autoIncrement: true
             },
             name: {
-                type: database.Sequelize.STRING
+                type: database.db.Sequelize.STRING
             },
             email: {
-                type: database.Sequelize.STRING
+                type: database.db.Sequelize.STRING
             },
             password: {
-                type: database.Sequelize.STRING
+                type: database.db.Sequelize.STRING
             },
             data_criacao: {
-                type: database.Sequelize.DATATIME
+                type: database.db.Sequelize.DATE
             }
         })
     }
