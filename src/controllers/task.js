@@ -10,100 +10,92 @@
 const Task = require('../models/task')
 
 class TaskController {
-    async new_task(req, res) {
-        const {title, description, date_inclusion, date_complation, projectID} = req.body;
+    async new_task(title, description, date_inclusion, date_complation, projectID) {
         if (title === undefined || description === undefined || date_inclusion === undefined || date_complation === undefined || projectID === undefined) {
             throw new Error('Name, description, date_inclusion, date_complation e projectID são obrigatórios');
         }
         try {
             const task = await Task.create({ title, description, date_inclusion, date_complation, projectID });
-            return res.status(201).json(task);
+            return task;
         } catch (error) {
-            return res.status(500).json({ error: error.message })
+            return error;
         }
     }
-    async update_task(req, res) {
-        const { id } = req.params;
-        const { title, description, date_complation } = req.body;
+    async update_task(id, title, description, date_complation) {
         if (title === undefined || description === undefined || date_complation === undefined || projectID === undefined) {
             throw new Error('Name, description, date_complation e projectID são obrigatórios');
         }
         try {
             const task = await Task.findByPk(id);
             if (!task) {
-                return res.status(404).json({ error: 'Tarefa não foi encontrado! '});
+                throw new Error('Tarefa não foi encontrado! ');
             }
             task.title = title;
             task.description = description;
             task.date_complation = date_complation;
             await task.save();
         } catch (error) {
-            return res.status(500).json({ error: error.message });
+            return error;
         }
     }
-    async delete_task(req, res) {
-        const { id } = req.params;
+    async delete_task(id) {
         if (!id) {
-            return res.status(400).json({ error: 'O ID é obrigatório!'});
+            throw new Error('O ID é obrigatório!');
         }
         try {
             const task = await Task.findByPk(id);
             if (!task) {
-                return res.status(404).json({ error: 'Tarefa não foi encontrado!'});
+                throw new Error('Tarefa não foi encontrado!');
             }
             await task.destroy();
-            return res.status(204).send();
         } catch (error) {
             return res.status(500).json({ error: error.message })
         }
     }
-    async show_all_task(req, res) {
+    async show_all_task() {
         try {
             const task = await Task.findAll();
-            return res.status(200).send(task);
+            return task;
         } catch (error) {
-            return res.status(500).json({ error: error.message });
+            return error;
         }
     }
-    async show_by_project(req, res) {
-        const { projectID } = req.params;
+    async show_by_project(projectID) {
         if (!projectID) {
-            return res.status(400).json({ error: 'O id de projeto é obrigatório!'});
+            throw new Error('O id de projeto é obrigatório!');
         }
         try {
             const task = await Task.findAll({ where: { projectID } });
             if (!task) {
-                return res.status(400).json({ error: 'Tarefa não foi encontrado!'});
+                throw new Error('Tarefa não foi encontrado!');
             }
-            return res.status(200).send(task);
+            return task;
         } catch (error) {
-            return res.status(500).json({ error: error.message }); 
+            return error; 
         }
     }
-    async show_by_status(req, res) {
-        const { status } = req.body; // ou params - preciso verificar
+    async show_by_status(status) {
         if (!status) {
-            return res.status(400).json({ error: 'O status é obrigatório!'});
+            throw new Error('O status é obrigatório!');
         }
         try {
             const task = await Task.findAll({ where: { status } });
             if (!task) {
-                return res.status(400).json({ error: 'status não foi encontrado!'});
+                throw new Error('status não foi encontrado!');
             }
-            return res.status(200).send(task);
+            return task;
         } catch (error) {
-            return res.status(500).json({ error: error.message }); 
+            return error; 
         }
     }
-    async validate_token(req, res) {
-        const { token } = req.body;
+    async validate_token(token) {
         try {
             const validate = jwt.verify(token, JWT_SECRET_KEY);
-            return res.status(200).json(validate);
+            return validate;
         } catch (error) {
-            return res.status(401).json({ error: 'Token inválido! '});
+            return error;
         }
     }
 }
 
-module.exports = new TaskController();
+module.exports = TaskController;

@@ -9,86 +9,79 @@
 const Project = require('../models/project')
 
 class ProjectController {
-    async new_project(req, res) {
-        const {name, description, date_inclusion, userID} = req.body;
+    async new_project(name, description, date_inclusion, userID) {
         if (name === undefined || description === undefined || date_inclusion === undefined || userID === undefined) {
             throw new Error('Name, description, date_inclusion e userID são obrigatórios!');
         }
         try {
             const project = await Project.create({ name, description, date_inclusion, userID });
-            return res.status(201).json(project);
+            return project;
         } catch (error) {
-            return res.status(500).json({ error: error.message })
+            return error;
         }
     }
-    async update_project(req, res) {
-        const { id } = req.params;
-        const { name, description, date_inclusion } = req.body;
+    async update_project(id, name, description, date_inclusion) {
         if (!id || !name || !description || !date_inclusion) {
-            return res.status(400).json({ error: 'ID, name, description e date_inclusion são obrigatórios!'});
+            throw new Error('ID, name, description e date_inclusion são obrigatórios!');
         }
         try {
             const project = await Project.findByPk(id);
             if (!project) {
-                return res.status(404).json({error: 'Projeto não foi encontrado!'});
+                throw new Error('Projeto não foi encontrado!');
             }
             project.name = name;
             project.description = description;
             project.date_inclusion = date_inclusion;
             await project.save();
-            return res.status(200).json(project);
+            return project;
         } catch (error) {
-            return res.status(500).json({ error: error.message });
+            return error;
         }
     }
-    async delete_project(req, res) {
-        const { id } = req.params;
+    async delete_project(id) {
         if (!id) {
-            return res.status(400).json({ error: 'O ID é obrigatório!'});
+            throw new Error('O ID é obrigatório!');
         }
         try {
             const project = await Project.findByPk(id);
             if (!project) {
-                return res.status(404).json({ error: 'Projeto não foi encontrado!'});
+                throw new Error('Projeto não foi encontrado!');
             }
             await project.destroy();
-            return res.status(204).send();
         } catch (error) {
-            return res.status(500).json({ error: error.message })
+            return error;
         }
     }
-    async show_all_project(req, res) {
+    async show_all_project() {
         try {
             const project = await Project.findAll();
-            return res.status(200).send(project);
+            return project;
         } catch (error) {
-            return res.status(500).json({ error: error.message });
+            return error;
         }
     }
-    async show_by_user(req, res) {
-        const { userID } = req.params;
+    async show_by_user(userID) {
         if (!userID) {
-            return res.status(400).json({ error: 'O id de usuário é obrigatório!'});
+            throw new Error('O id de usuário é obrigatório!');
         }
         try {
             const project = await Project.findAll({ where: { userID } });
             if (!project) {
-                return res.status(400).json({ error: 'Projeto não foi encontrado!'});
+                throw new Error('Projeto não foi encontrado!');
             }
-            return res.status(200).send(project);
+            return project;
         } catch (error) {
-            return res.status(500).json({ error: error.message }); 
+            return error; 
         }
     }
-    async validate_token(req, res) {
-        const { token } = req.body;
+    async validate_token(token) {
         try {
             const validate = jwt.verify(token, JWT_SECRET_KEY);
-            return res.status(200).json(validate);
+            return validate;
         } catch (error) {
-            return res.status(401).json({ error: 'Token inválido! '});
+            return error;
         }
     }
 }
 
-module.exports = new ProjectController();
+module.exports = ProjectController;

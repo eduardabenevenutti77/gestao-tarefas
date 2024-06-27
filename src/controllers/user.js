@@ -11,86 +11,79 @@ const JWT_SECRET_KEY = 'mikey';
 const cripto = 7;
 
 class UserController {
-    async new_user(req, res) {
-        const { name, email, password } = req.body;
+    async new_user(name, email, password ) {
         if (name === undefined || email === undefined || password === undefined) {
             throw new Error('Name, e-mail e password são obrigatórios!');
         }
         try {
             const password_hash = await bcrypt.hash(password, cripto);
             const user = await User.create({ name, email, password: password_hash });
-            return res.status(201).json(user);
+            return user;
         } catch (error) {
-            return res.status(500).json({ error: error.message });
+            return error;
         }
     }
-    async update_user(req, res) {
-        const { id } = req.params;
-        const { name, email, password } = req.body;
+    async update_user(id, name, email, password) {
         if (!id || !name || !email || !password) {
-            return res.status(400).json({ error: 'ID, name, e-mail e password são obrigatórios!' });
+            throw new Error('ID, name, e-mail e password são obrigatórios!');
         }
         try {
             const user = await User.findByPk(id);
             if (!user) {
-                return  res.status(404).json({ error: 'Usuário não foi encontrado! '});
+                throw new Error('Usuário não foi encontrado! ');
             }
             user.name = name;
             user.email = email;
             const password_hash = await bcrypt.hash(password, cripto);
             user.password = password_hash;
             await user.save();
-            return res.status(200).json(user);
+            return user;
         } catch (error) {
-            return res.status(500).json({ error: error.message });
+            return error;
         }
     }
-    async delete_user(req, res) {
-        const { id } = req.params;
+    async delete_user(id) {
         if (!id) {
-            return res.status(400).json({ error: 'O id é obrigatório! '});
+            throw new Error('O id é obrigatório! ');
         }
         try {
             const user = await User.findByPk(id);
             if(!user) {
-                return res.status(404).json({ error: 'Usuário não encontrado! '});
+                throw new Error('Usuário não encontrado! ');
             }
             await user.destroy();
-            return res.status(204).send();
         } catch (error) {
-           return res.status(500).json({ error: error.message }); 
+           return error; 
         }
     }
-    async show_user(req, res) {
+    async show_user() {
         try {
             const user = await User.findAll();
-            return res.status(200).json(user);
+            return user;
         } catch (error) {
-            return res.status(500).json({ error: error.message });
+            return error;
         }
     }
-    async login(req, res) {
-        const { email, password } = req.body;
+    async login(email, password) {
         if (!email || !password) {
-            return res.status(400).json({ error: 'E-mail e password são obrigatórios! '});
+            throw new Error('E-mail e password são obrigatórios! ');
         }
         try {
             const user = await User.findOne({ where: {email} });
             if (!user) {
-                return res.status(404).json({error: 'Usuário não foi encontrado!'});
+                throw new Error('Usuário não foi encontrado!');
             }
             const correct_password = await bcrypt.compare(password, user.password);
             if(!correct_password) {
-                return res.status(401).json({ error: 'Passoword inválido! '});
+                throw new Error('Passoword inválido! ');
             }
             const token = jwt.sign({ id: user.id }, JWT_SECRET_KEY );
-            return res.status(200).json({ token: token});
+            return token;
         } catch (error) {
-            return res.status(500).json({ error: error.message });
+            return error;
         }
     }
-    async validate_token(req, res) {
-        const { token } = req.body;
+    async validate_token(token) {
         try {
             const validate = jwt.verify(token, JWT_SECRET_KEY);
             return res.status(200).json(validate);
