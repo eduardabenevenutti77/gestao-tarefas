@@ -5,10 +5,10 @@ const conexao = require('../../src/database')
 describe('Teste de User', () => {
     const servico = UserController
     beforeAll(async () => {
-        this.transaction = await conexao.transaction();
+        this.transaction = await conexao.bd.transaction();
     });
     afterAll(async () => {
-        await this.transaction .rollback()
+        await this.transaction.bd.rollback()
     });
 
     it('Adicionar usuário: ', async () => {
