@@ -34,6 +34,7 @@ class TaskController {
             task.description = description;
             task.date_complation = date_complation;
             await task.save();
+            return task;
         } catch (error) {
             return error;
         }

@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/models/user.js</title>
+    <title>Code coverage report for src/models/project.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/models</a> user.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/models</a> project.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
@@ -101,7 +101,19 @@
 <a name='L36'></a><a href='#L36'>36</a>
 <a name='L37'></a><a href='#L37'>37</a>
 <a name='L38'></a><a href='#L38'>38</a>
-<a name='L39'></a><a href='#L39'>39</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -114,6 +126,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -139,52 +152,66 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">/*
-    * O sistema deve permitir a criação de novos usuários com nome, email e senha.
-    * O email deve ser único para cada usuário.
-    * A senha deve ser armazenada de forma segura (hash).
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">/* 
+    * Usuários autenticados podem criar novos projetos.
+    * Cada projeto deve ter um nome e descrição.
+    * Usuários podem editar e excluir seus próprios projetos.
+    * Usuários podem visualizar uma lista de seus projetos.
+    * O nome dos projetos deve ter um limite de caracteres (por exemplo, máximo 100 caracteres).
     
     * ID (único)
     * Nome
-    * Email
-    * Senha (hash)
+    * Descrição
     * Data de criação
+    * ID do Usuário (relacionamento com a entidade Usuário)
 */
+&nbsp;
 const Sequelize = require('sequelize');
 const database = require('../database')
+const userID = require('../models/user');
 &nbsp;
-class User {
+class Project {
     constructor() {
-        this.model = database.db.define('users', {
+        this.model = database.db.define('projects', {
             id: {
                 type: database.db.Sequelize.INTEGER,
                 primaryKey: true,
-                autoIncrement: true
+                autoIncrement: true,
             },
             name: {
                 type: database.db.Sequelize.STRING
             },
-            email: {
+            description: {
                 type: database.db.Sequelize.STRING
             },
-            password: {
-                type: database.db.Sequelize.STRING
-            },
-            data_criacao: {
+            date_inclusion: {
                 type: database.db.Sequelize.DATE
+            },
+            userID: {
+                type: database.db.Sequelize.INTEGER,
+                references: {
+                    model: 'users',
+                    key: 'id'
+                }
             }
         })
     }
 }
 &nbsp;
-module.exports = (new User).model;</pre></td></tr></table></pre>
+// userID.belongsTo(userID, { foreingKey: 'userID' })
+module.exports = (new Project).model;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-06-28T14:57:38.069Z
+                at 2024-06-28T14:56:23.224Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

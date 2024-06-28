@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1719533568137" clover="3.2.0">
-  <project timestamp="1719533568138" name="All files">
-    <metrics statements="62" coveredstatements="14" conditionals="25" coveredconditionals="0" methods="9" coveredmethods="3" elements="96" coveredelements="17" complexity="0" loc="62" ncloc="62" packages="3" files="3" classes="3"/>
+<coverage generated="1719586658459" clover="3.2.0">
+  <project timestamp="1719586658460" name="All files">
+    <metrics statements="68" coveredstatements="20" conditionals="25" coveredconditionals="0" methods="9" coveredmethods="3" elements="102" coveredelements="23" complexity="0" loc="68" ncloc="68" packages="3" files="4" classes="4"/>
     <package name="src">
-      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-      <file name="database.js" path="C:\Users\Maria Eduarda\Documents\gestao-tarefas\src\database.js">
+      <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="app.js" path="C:\Users\maria.benevenutti\Documents\gestao-tarefas\src\app.js">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+      </file>
+      <file name="database.js" path="C:\Users\maria.benevenutti\Documents\gestao-tarefas\src\database.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
@@ -14,7 +23,7 @@
     </package>
     <package name="src.controllers">
       <metrics statements="54" coveredstatements="6" conditionals="25" coveredconditionals="0" methods="6" coveredmethods="0"/>
-      <file name="user.js" path="C:\Users\Maria Eduarda\Documents\gestao-tarefas\src\controllers\user.js">
+      <file name="user.js" path="C:\Users\maria.benevenutti\Documents\gestao-tarefas\src\controllers\user.js">
         <metrics statements="54" coveredstatements="6" conditionals="25" coveredconditionals="0" methods="6" coveredmethods="0"/>
         <line num="7" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
@@ -74,7 +83,7 @@
     </package>
     <package name="src.models">
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="user.js" path="C:\Users\Maria Eduarda\Documents\gestao-tarefas\src\models\user.js">
+      <file name="user.js" path="C:\Users\maria.benevenutti\Documents\gestao-tarefas\src\models\user.js">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="12" count="1" type="stmt"/>
         <line num="13" count="1" type="stmt"/>
