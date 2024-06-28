@@ -84,4 +84,4 @@ class ProjectController {
     }
 }
 
-module.exports = ProjectController;
+module.exports = new ProjectController();
