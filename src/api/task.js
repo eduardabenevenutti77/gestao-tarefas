@@ -8,7 +8,7 @@
 */
 
 const TaskController = require('../controllers/project')
-let status = 'Pedente'
+const status = 'Pedente'
 
 class Task {
     async new_task(req, res) {
