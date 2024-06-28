@@ -98,4 +98,4 @@ class TaskController {
     }
 }
 
-module.exports = TaskController;
+module.exports = new TaskController();
