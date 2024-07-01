@@ -18,9 +18,9 @@ class User {
     }
     async update_user(req, res) {
         const { id } = req.params;
-        const { name, email, password } = req.body;
+        const { name, email } = req.body;
         try {
-            const user = await UserController.update_user(Number(id), name, email, password);
+            const user = await UserController.update_user(Number(id), name, email);
             return res.status(200).send(user);
         } catch (error) {
             return res.status(400).send({ error: error.message })

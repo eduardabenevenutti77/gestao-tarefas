@@ -23,9 +23,9 @@ class UserController {
             return error;
         }
     }
-    async update_user(id, name, email, password) {
-        if (!id || !name || !email || !password) {
-            throw new Error('ID, name, e-mail e password são obrigatórios!');
+    async update_user(id, name, email) {
+        if (!id || !name || !email ) {
+            throw new Error('ID, name e e-mail  são obrigatórios!');
         }
         try {
             const user = await User.findByPk(id);
@@ -34,8 +34,8 @@ class UserController {
             }
             user.name = name;
             user.email = email;
-            const password_hash = await bcrypt.hash(password, cripto);
-            user.password = password_hash;
+            // const password_hash = await bcrypt.hash(password, cripto);
+            // user.password = password_hash;
             await user.save();
             return user;
         } catch (error) {
@@ -86,9 +86,9 @@ class UserController {
     async validate_token(token) {
         try {
             const validate = jwt.verify(token, JWT_SECRET_KEY);
-            return res.status(200).json(validate);
+            return validate;
         } catch (error) {
-            return res.status(401).json({ error: 'Token inválido! '});
+            throw new error;
         }
     }
 }

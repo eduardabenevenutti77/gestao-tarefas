@@ -13,7 +13,10 @@ database.db.sync({ force: false })
         app.listen(8000, _ => {
             console.log('Server running on port 8000')
         })
+        // module.exports = server
     })
     .catch(e => {
         console.error(`Erro ao inicializar o banco de dados ${e}`)
     })
+
+module.exports = app
