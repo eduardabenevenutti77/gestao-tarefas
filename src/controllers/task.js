@@ -10,9 +10,9 @@
 const Task = require('../models/task')
 
 class TaskController {
-    async new_task(title, description, date_inclusion, date_complation, projectID) {
-        if (title === undefined || description === undefined || date_inclusion === undefined || date_complation === undefined || projectID === undefined) {
-            throw new Error('Name, description, date_inclusion, date_complation e projectID são obrigatórios');
+    async new_task(title, description, date_inclusion, projectID) {
+        if (title === undefined || description === undefined || date_inclusion === undefined || projectID === undefined) {
+            throw new Error('Name, description, date_inclusion e projectID são obrigatórios');
         }
         try {
             const task = await Task.create({ title, description, date_inclusion, date_complation, projectID });
@@ -50,7 +50,7 @@ class TaskController {
             }
             await task.destroy();
         } catch (error) {
-            return res.status(500).json({ error: error.message })
+            return error;
         }
     }
     async show_all_task() {

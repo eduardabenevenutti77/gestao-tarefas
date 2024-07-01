@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/models/project.js</title>
+    <title>Code coverage report for src/models/task.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/models</a> project.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/models</a> task.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -110,7 +110,17 @@
 <a name='L45'></a><a href='#L45'>45</a>
 <a name='L46'></a><a href='#L46'>46</a>
 <a name='L47'></a><a href='#L47'>47</a>
-<a name='L48'></a><a href='#L48'>48</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -131,6 +141,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -158,32 +174,34 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">/* 
-    * Usuários autenticados podem criar novos projetos.
-    * Cada projeto deve ter um nome e descrição.
-    * Usuários podem editar e excluir seus próprios projetos.
-    * Usuários podem visualizar uma lista de seus projetos.
-    * O nome dos projetos deve ter um limite de caracteres (por exemplo, máximo 100 caracteres).
+    * Usuários autenticados podem criar novas tarefas associadas a projetos existentes.
+    * Cada tarefa deve ter um título, descrição e status inicial como "pendente".
+    * Usuários podem editar e excluir suas próprias tarefas.
+    * Usuários podem visualizar uma lista de tarefas por projeto com filtros por status.
+    * Cada tarefa deve registrar a data de criação automaticamente e permitir a adição de uma data de conclusão.
+    * O título das tarefas deve ter um limite de caracteres (por exemplo, máximo 100 caracteres).
     
-    * ID (único)
-    * Nome
+     ID (único)
+    * Título
     * Descrição
     * Data de criação
-    * ID do Usuário (relacionamento com a entidade Usuário)
+    * Data de conclusão (opcional)
+    * Status (pendente, em andamento, concluída)
+    * ID do Projeto (relacionamento com a entidade Projeto)
 */
-&nbsp;
 const Sequelize = require('sequelize');
 const database = require('../database')
-const userID = require('../models/user');
+const projectID = require('../models/project');
 &nbsp;
-class Project {
+class Task {
     constructor() {
-        this.model = database.db.define('projects', {
+        this.model = database.db.define('tasks', {
             id: {
                 type: database.db.Sequelize.INTEGER,
                 primaryKey: true,
-                autoIncrement: true,
+                autoIncrement: true
             },
-            name: {
+            title: {
                 type: database.db.Sequelize.STRING
             },
             description: {
@@ -192,10 +210,16 @@ class Project {
             date_inclusion: {
                 type: database.db.Sequelize.DATE
             },
-            userID: {
+            date_complation: {
+                type: database.db.Sequelize.DATE
+            },
+            status: {
+                type: database.db.Sequelize.STRING
+            },
+            projectID: {
                 type: database.db.Sequelize.INTEGER,
                 references: {
-                    model: 'users',
+                    model: 'projects',
                     key: 'id'
                 }
             }
@@ -203,8 +227,8 @@ class Project {
     }
 }
 &nbsp;
-// userID.belongsTo(userID, { foreingKey: 'userID' })
-module.exports = (new Project).model;</pre></td></tr></table></pre>
+// projectID.belongsTo(projectID, { foreingKey: 'projectID' })
+module.exports = (new Task).model;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->

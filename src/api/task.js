@@ -7,14 +7,14 @@
     * O título das tarefas deve ter um limite de caracteres (por exemplo, máximo 100 caracteres).
 */
 
-const TaskController = require('../controllers/project')
+const TaskController = require('../controllers/task')
 const status = 'Pedente'
 
 class Task {
     async new_task(req, res) {
-        const { title, description, date_inclusion, date_complation, projectID } = req.body;
+        const { title, description, date_inclusion, projectID } = req.body;
         try {
-            const task = await TaskController.new_task(title, description, date_inclusion, date_complation, projectID);
+            const task = await TaskController.new_task(title, description, date_inclusion, projectID);
             return res.status(201).send(task);
         } catch (error) {
             return res.status(400).send({ error: error.message });
@@ -22,9 +22,9 @@ class Task {
     }
     async update_task(req, res) {
         const { id } = req.params;
-        const { title, description, date_inclusion, date_complation, status } = req.body;
+        const { title, description, date_complation, status } = req.body;
         try {
-            const task = await TaskController.update_task(Number(id), title, description, date_inclusion, date_complation, status);
+            const task = await TaskController.update_task(Number(id), title, description, date_complation, status);
             return res.status(200).send(task);
         } catch (error) {
             return res.status(400).send({ error: error.message });

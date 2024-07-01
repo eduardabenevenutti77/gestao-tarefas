@@ -25,7 +25,7 @@ class Project {
                 autoIncrement: true,
             },
             name: {
-                type: database.db.Sequelize.STRING
+                type: database.db.Sequelize.STRING(255)
             },
             description: {
                 type: database.db.Sequelize.STRING

@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">56.25% </span>
+                <span class="strong">6.25% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>18/32</span>
+                <span class='fraction'>2/32</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/6</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">56.25% </span>
+                <span class="strong">6.25% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>18/32</span>
+                <span class='fraction'>2/32</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -138,37 +138,37 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -202,38 +202,38 @@
 const UserController = require('../controllers/user');
 &nbsp;
 class User {
-    async new_user(req, res) {
-        const { name, email, password } = req.body;
-        try {
-            const user = await UserController.new_user(name, email, password);
-            return res.status(201).send(user);
+<span class="fstat-no" title="function not covered" >    as</span>ync new_user(req, res) {
+        const { name, email, password } = <span class="cstat-no" title="statement not covered" >req.body;</span>
+<span class="cstat-no" title="statement not covered" >        try {</span>
+            const user = <span class="cstat-no" title="statement not covered" >await UserController.new_user(name, email, password);</span>
+<span class="cstat-no" title="statement not covered" >            return res.status(201).send(user);</span>
         } catch (error) {
 <span class="cstat-no" title="statement not covered" >            return res.status(400).send({ error: error.message })</span>
         }
     }
-    async update_user(req, res) {
-        const { id } = req.params;
-        const { name, email } = req.body;
-        try {
-            const user = await UserController.update_user(Number(id), name, email);
-            return res.status(200).send(user);
+<span class="fstat-no" title="function not covered" >    as</span>ync update_user(req, res) {
+        const { id } = <span class="cstat-no" title="statement not covered" >req.params;</span>
+        const { name, email } = <span class="cstat-no" title="statement not covered" >req.body;</span>
+<span class="cstat-no" title="statement not covered" >        try {</span>
+            const user = <span class="cstat-no" title="statement not covered" >await UserController.update_user(Number(id), name, email);</span>
+<span class="cstat-no" title="statement not covered" >            return res.status(200).send(user);</span>
         } catch (error) {
 <span class="cstat-no" title="statement not covered" >            return res.status(400).send({ error: error.message })</span>
         }
     }
-    async delete_user(req, res) {
-        const { id } = req.params;
-        try {
-            await UserController.delete_user(Number(id));
-            return res.status(204).send();
+<span class="fstat-no" title="function not covered" >    as</span>ync delete_user(req, res) {
+        const { id } = <span class="cstat-no" title="statement not covered" >req.params;</span>
+<span class="cstat-no" title="statement not covered" >        try {</span>
+<span class="cstat-no" title="statement not covered" >            await UserController.delete_user(Number(id));</span>
+<span class="cstat-no" title="statement not covered" >            return res.status(204).send();</span>
         } catch (error) {
 <span class="cstat-no" title="statement not covered" >            return res.status(400).send({ error: error.message })</span>
         }
     }
-    async show_user(req, res) {
-        try {
-            const user = await UserController.show_user();
-            return res.status(200).send(user);
+<span class="fstat-no" title="function not covered" >    as</span>ync show_user(req, res) {
+<span class="cstat-no" title="statement not covered" >        try {</span>
+            const user = <span class="cstat-no" title="statement not covered" >await UserController.show_user();</span>
+<span class="cstat-no" title="statement not covered" >            return res.status(200).send(user);</span>
         } catch (error) {
 <span class="cstat-no" title="statement not covered" >            return res.status(400).send({ error: error.message })</span>
         }
@@ -265,7 +265,7 @@ module.exports = new User();</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-07-01T11:20:40.363Z
+                at 2024-07-01T13:20:43.414Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

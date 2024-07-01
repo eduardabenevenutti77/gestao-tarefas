@@ -27,16 +27,16 @@ class Task {
                 autoIncrement: true
             },
             title: {
-                type: database.db.Sequelize.STRING
+                type: database.db.Sequelize.STRING(255)
             },
             description: {
                 type: database.db.Sequelize.STRING
             },
             date_inclusion: {
-                type: database.db.Sequelize.DATATIME
+                type: database.db.Sequelize.DATE
             },
             date_complation: {
-                type: database.db.Sequelize.DATATIME
+                type: database.db.Sequelize.DATE
             },
             status: {
                 type: database.db.Sequelize.STRING
