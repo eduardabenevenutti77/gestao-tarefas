@@ -8,7 +8,6 @@
 */
 
 const TaskController = require('../controllers/task')
-const status = 'Pedente'
 
 class Task {
     async new_task(req, res) {

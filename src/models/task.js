@@ -39,7 +39,8 @@ class Task {
                 type: database.db.Sequelize.DATE
             },
             status: {
-                type: database.db.Sequelize.STRING
+                type: database.db.Sequelize.STRING,
+                values: 'Pedente'
             },
             projectID: {
                 type: database.db.Sequelize.INTEGER,
