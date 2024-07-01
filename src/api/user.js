@@ -45,7 +45,7 @@ class User {
     }
     async login(req, res) {
         try {
-            const {email, password} = req.body;
+            const { email, password } = req.body;
             const token = await UserController.login(email, password);
             return res.status(200).send(token);
         } catch (error) {

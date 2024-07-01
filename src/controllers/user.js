@@ -14,7 +14,10 @@ class UserController {
     async new_user(name, email, password ) {
         if (name === undefined || email === undefined || password === undefined) {
             throw new Error('Name, e-mail e password são obrigatórios!');
-        }
+        } else if (/\d/.test(name)) {
+            // peguei da minha atividade em dupla com a carol de testes
+            throw new Error('O name deve conter apenas letras!')
+        } 
         try {
             const password_hash = await bcrypt.hash(password, cripto);
             const user = await User.create({ name, email, password: password_hash });
@@ -26,7 +29,10 @@ class UserController {
     async update_user(id, name, email) {
         if (!id || !name || !email ) {
             throw new Error('ID, name e e-mail  são obrigatórios!');
-        }
+        } else if (/\d/.test(name)) {
+            // peguei da minha atividade em dupla com a carol de testes
+            throw new Error('O name deve conter apenas letras!')
+        } 
         try {
             const user = await User.findByPk(id);
             if (!user) {
@@ -34,8 +40,6 @@ class UserController {
             }
             user.name = name;
             user.email = email;
-            // const password_hash = await bcrypt.hash(password, cripto);
-            // user.password = password_hash;
             await user.save();
             return user;
         } catch (error) {

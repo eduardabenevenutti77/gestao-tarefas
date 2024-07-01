@@ -10,7 +10,7 @@ const ProjectController = require('../controllers/project')
 
 class Project {
     async new_project(req, res) {
-        const {name, description, date_inclusion, userID} = req.body;
+        const { name, description, date_inclusion, userID } = req.body;
         try {
             const project = await ProjectController.new_project(name, description, date_inclusion, userID);
             return res.status(201).send(project);
@@ -20,7 +20,7 @@ class Project {
     }
     async update_project(req, res) {
         const { id } = req.params;
-        const {name, description, date_inclusion} = req.body;
+        const { name, description, date_inclusion } = req.body;
         try {
             const project = await ProjectController.update_project(Number(id), name, description, date_inclusion);
             return res.status(200).send(project);
@@ -29,7 +29,7 @@ class Project {
         }
     }
     async delete_project(req, res) {
-        const {id} = req.params;
+        const { id } = req.params;
         try {
             await ProjectController.delete_project(Number(id));
             return res.status(200).send();
@@ -46,7 +46,7 @@ class Project {
         }
     }
     async show_by_user(req, res) {
-        const {userID} = req.params;
+        const { userID } = req.params;
         try {
             const project = await ProjectController.show_by_user(Number(userID));
             return res.status(200).send(project);

@@ -7,12 +7,19 @@
     * O título das tarefas deve ter um limite de caracteres (por exemplo, máximo 100 caracteres).
 */
 
-const Task = require('../models/task')
+const Task = require('../models/task');
+const limiteCaracteres = 255;
 
 class TaskController {
     async new_task(title, description, date_inclusion, projectID) {
         if (title === undefined || description === undefined || date_inclusion === undefined || projectID === undefined) {
-            throw new Error('Name, description, date_inclusion e projectID são obrigatórios');
+            throw new Error('title, description, date_inclusion e projectID são obrigatórios');
+        } else if (/\d/.test(title)) {
+            // peguei da minha atividade em dupla com a carol de testes
+            throw new Error('O title deve conter apenas letras!')
+        } else if (title.lenght > limiteCaracteres) {
+            // peguei da minha atividade em dupla com a carol de testes
+            throw new Error("Desculpe, o limite de caracteres foi excedido no campo 'title'. Por favor, inserir um title com até 255 carateres!");
         }
         try {
             const task = await Task.create({ title, description, date_inclusion, date_complation, projectID });
@@ -23,7 +30,13 @@ class TaskController {
     }
     async update_task(id, title, description, date_complation) {
         if (title === undefined || description === undefined || date_complation === undefined || projectID === undefined) {
-            throw new Error('Name, description, date_complation e projectID são obrigatórios');
+            throw new Error('title, description, date_complation e projectID são obrigatórios');
+        } else if (/\d/.test(title)) {
+            // peguei da minha atividade em dupla com a carol de testes
+            throw new Error('O title deve conter apenas letras!')
+        } else if (title.lenght > limiteCaracteres) {
+            // peguei da minha atividade em dupla com a carol de testes
+            throw new Error("Desculpe, o limite de caracteres foi excedido no campo 'title'. Por favor, inserir um title com até 255 carateres!");
         }
         try {
             const task = await Task.findByPk(id);

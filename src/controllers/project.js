@@ -6,12 +6,19 @@
     * O nome dos projetos deve ter um limite de caracteres (por exemplo, máximo 100 caracteres).
 */
 
-const Project = require('../models/project')
+const Project = require('../models/project');
+const limiteCaracteres = 255;
 
 class ProjectController {
     async new_project(name, description, date_inclusion, userID) {
         if (name === undefined || description === undefined || date_inclusion === undefined || userID === undefined) {
             throw new Error('Name, description, date_inclusion e userID são obrigatórios!');
+        } else if (/\d/.test(name)) {
+            // peguei da minha atividade em dupla com a carol de testes
+            throw new Error('O name deve conter apenas letras!')
+        } else if (name.lenght > limiteCaracteres) {
+            // peguei da minha atividade em dupla com a carol de testes
+            throw new Error("Desculpe, o limite de caracteres foi excedido no campo 'name'. Por favor, inserir um name com até 255 carateres!");
         }
         try {
             const project = await Project.create({ name, description, date_inclusion, userID });
@@ -23,6 +30,12 @@ class ProjectController {
     async update_project(id, name, description, date_inclusion) {
         if (!id || !name || !description || !date_inclusion) {
             throw new Error('ID, name, description e date_inclusion são obrigatórios!');
+        } else if (/\d/.test(name)) {
+            // peguei da minha atividade em dupla com a carol de testes
+            throw new Error('O name deve conter apenas letras!')
+        } else if (name.lenght > limiteCaracteres) {
+            // peguei da minha atividade em dupla com a carol de testes
+            throw new Error("Desculpe, o limite de caracteres foi excedido no campo 'name'. Por favor, inserir um name com até 255 carateres!");
         }
         try {
             const project = await Project.findByPk(id);
